@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getProductsByCategory } from "@/lib/api";
+import { getProductsByCategory, getAllCategories } from "@/lib/api";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import styles from "./CategoryPage.module.css";
 
@@ -7,10 +7,16 @@ interface Props {
   params: Promise<{ category: string }>;
 }
 
+export async function generateStaticParams() {
+  const categories = await getAllCategories();
+  return categories.map((category) => ({ category }));
+}
+
 export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
 
   const decodedCategory = decodeURIComponent(category);
+
   const products = await getProductsByCategory(decodedCategory);
 
   return (
