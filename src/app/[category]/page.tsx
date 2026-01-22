@@ -38,16 +38,12 @@ export default async function CategoryPage({ params }: Props) {
   );
 }
 
-export const dynamicParams = true;
-
 export async function generateStaticParams() {
   try {
     const categories = await getAllCategories();
-    return categories.map((cat) => ({
-      category: cat,
-    }));
+    return categories.map((cat) => ({ category: cat }));
   } catch (err) {
-    console.error("generateStaticParams → błąd:", err);
+    console.error(err);
     return [{ category: "electronics" }];
   }
 }
