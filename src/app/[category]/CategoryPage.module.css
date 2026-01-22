@@ -1,0 +1,53 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #111827;
+}
+
+.count {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.back {
+  margin-top: 0.5rem;
+  display: inline-block;
+  width: fit-content;
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+}

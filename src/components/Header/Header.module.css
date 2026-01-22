@@ -1,0 +1,57 @@
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.logo:hover {
+  opacity: 0.85;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cartLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #111827;
+  text-decoration: none;
+}
+
+.cartLink:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .container {
+    height: 56px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+}

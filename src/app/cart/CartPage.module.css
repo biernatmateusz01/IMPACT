@@ -1,0 +1,141 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.empty {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.empty h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.empty a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.empty a:hover {
+  text-decoration: underline;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.details h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.details p {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity button {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.quantity button:hover {
+  background: #f3f4f6;
+}
+
+.quantity span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
+.remove {
+  background: transparent;
+  border: none;
+  color: #dc2626;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.remove:hover {
+  text-decoration: underline;
+}
+
+.summary {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.summary h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .item {
+    grid-template-columns: 80px 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .quantity {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  .remove {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
