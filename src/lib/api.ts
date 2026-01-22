@@ -1,15 +1,17 @@
 import { Product } from "@/lib/types";
 
 const BASE_URL = "https://fakestoreapi.com";
+const commonHeaders = {
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  Accept: "application/json",
+  Referer: "https://fakestoreapi.com/",
+};
 
 export async function getAllCategories(): Promise<string[]> {
   const res = await fetch(`${BASE_URL}/products/categories`, {
     next: { revalidate: 3600 },
-    headers: {
-      "User-Agent": "Mozilla/5.0 (compatible; Next.js/16 FakeStoreClient/1.0)",
-      Accept: "application/json",
-      Referer: "https://fakestoreapi.com/",
-    },
+    headers: commonHeaders,
   });
 
   if (!res.ok) {
@@ -27,12 +29,13 @@ export async function getProductsByCategory(
     `${BASE_URL}/products/category/${encodeURIComponent(category)}`,
     {
       next: { revalidate: 3600 },
+      headers: commonHeaders,
     },
   );
 
   if (!res.ok) {
     console.error(
-      `Błąd pobierania produktów dla kategorii "${category}":`,
+      `Failed to fetch products for category: "${category}":`,
       res.status,
       res.statusText,
     );
@@ -45,10 +48,11 @@ export async function getProductsByCategory(
 export async function getAllProducts(): Promise<Product[]> {
   const res = await fetch(`${BASE_URL}/products`, {
     next: { revalidate: 1800 },
+    headers: commonHeaders,
   });
 
   if (!res.ok) {
-    console.error("Błąd pobierania wszystkich produktów:", res.status);
+    console.error("Failed to fetch all products:", res.status);
     throw new Error("Failed to fetch all products");
   }
 
