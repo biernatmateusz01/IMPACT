@@ -21,7 +21,6 @@ export async function getAllCategories(): Promise<string[]> {
       );
       return [];
     }
-    console.log("API response on Vercel:", res.json());
     return res.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
