@@ -1,63 +1,82 @@
 import { Product } from "@/lib/types";
 
 const BASE_URL = "https://fakestoreapi.com";
+
 const commonHeaders = {
   "User-Agent":
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-  Accept: "application/json",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+  Accept: "application/json, text/plain, */*",
+  "Accept-Language": "en-US,en;q=0.9,pl;q=0.8",
+  "Accept-Encoding": "gzip, deflate, br",
   Referer: "https://fakestoreapi.com/",
+  Connection: "keep-alive",
+  Origin: "https://fakestoreapi.com",
 };
 
 export async function getAllCategories(): Promise<string[]> {
-  const res = await fetch(`${BASE_URL}/products/categories`, {
-    next: { revalidate: 3600 },
-    headers: commonHeaders,
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/products/categories`, {
+      headers: commonHeaders,
+      next: { revalidate: 3600 },
+    });
 
-  if (!res.ok) {
-    console.error("Failed to fetch categories", res.status, res.statusText);
-    throw new Error("Failed to fetch categories");
+    if (!res.ok) {
+      console.warn(
+        `Categories fetch failed: ${res.status} ${res.statusText} – returning empty array`,
+      );
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
   }
-
-  return res.json();
 }
 
 export async function getProductsByCategory(
   category: string,
 ): Promise<Product[]> {
-  const res = await fetch(
-    `${BASE_URL}/products/category/${encodeURIComponent(category)}`,
-    {
-      next: { revalidate: 3600 },
+  const encodedCategory = encodeURIComponent(category);
+  const url = `${BASE_URL}/products/category/${encodedCategory}`;
+
+  try {
+    const res = await fetch(url, {
       headers: commonHeaders,
-      cache: "force-cache",
-    },
-  );
+      next: { revalidate: 3600 },
+    });
 
-  if (!res.ok) {
-    console.error(
-      `Failed to fetch products for category: "${category}":`,
-      res.status,
-      res.statusText,
-    );
-    throw new Error(`Failed to fetch products for category: ${category}`);
+    if (!res.ok) {
+      console.warn(
+        `Products fetch failed for "${category}" (${res.status} ${res.statusText}) – returning empty array`,
+      );
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error(`Error fetching products for ${category}:`, error);
+    return [];
   }
-
-  return res.json();
 }
 
 export async function getAllProducts(): Promise<Product[]> {
-  const res = await fetch(`${BASE_URL}/products`, {
-    next: { revalidate: 1800 },
-    headers: commonHeaders,
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${BASE_URL}/products`, {
+      headers: commonHeaders,
+      next: { revalidate: 1800 },
+    });
 
-  if (!res.ok) {
-    console.error("Failed to fetch all products:", res.status);
-    throw new Error("Failed to fetch all products");
+    if (!res.ok) {
+      console.warn(
+        `All products fetch failed: ${res.status} – returning empty array`,
+      );
+      return [];
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching all products:", error);
+    return [];
   }
-
-  return res.json();
 }
