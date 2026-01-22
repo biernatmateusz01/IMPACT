@@ -1,14 +1,17 @@
-"use client";
-
+import { useState, useEffect } from "react";
 import styles from "./CartIcon.module.css";
 
-type Props = { count: number };
+export default function CartIcon({ count }: { count: number }) {
+  const [isClient, setIsClient] = useState(false);
 
-export default function CartIcon({ count }: Props) {
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className={styles.cartIcon}>
       🛒
-      {count > 0 && <span className={styles.badge}>{count}</span>}
+      {isClient && count > 0 && <span className={styles.badge}>{count}</span>}
     </div>
   );
 }
