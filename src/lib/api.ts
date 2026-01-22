@@ -2,17 +2,10 @@ import { Product } from "@/lib/types";
 
 const BASE_URL = "https://fakestoreapi.com";
 
-const commonHeaders = {
-  Referer: "https://fakestoreapi.com/",
-  Connection: "keep-alive",
-  Origin: "https://fakestoreapi.com",
-};
-
 export async function getAllCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${BASE_URL}/products/categories`, {
-      headers: commonHeaders,
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -36,8 +29,7 @@ export async function getProductsByCategory(
 
   try {
     const res = await fetch(url, {
-      headers: commonHeaders,
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -57,8 +49,7 @@ export async function getProductsByCategory(
 export async function getAllProducts(): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}/products`, {
-      headers: commonHeaders,
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
