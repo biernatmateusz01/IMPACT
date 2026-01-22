@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getProductsByCategory, getAllCategories } from "@/lib/api";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import styles from "./CategoryPage.module.css";
-export const dynamic = "force-dynamic";
 interface Props {
   params: Promise<{ category: string }>;
 }

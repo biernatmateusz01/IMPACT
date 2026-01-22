@@ -31,7 +31,7 @@ export async function getProductsByCategory(
     {
       next: { revalidate: 3600 },
       headers: commonHeaders,
-      cache: "no-store",
+      cache: "force-cache",
     },
   );
 
