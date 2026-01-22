@@ -12,6 +12,7 @@ export async function getAllCategories(): Promise<string[]> {
   const res = await fetch(`${BASE_URL}/products/categories`, {
     next: { revalidate: 3600 },
     headers: commonHeaders,
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -30,6 +31,7 @@ export async function getProductsByCategory(
     {
       next: { revalidate: 3600 },
       headers: commonHeaders,
+      cache: "no-store",
     },
   );
 
@@ -49,6 +51,7 @@ export async function getAllProducts(): Promise<Product[]> {
   const res = await fetch(`${BASE_URL}/products`, {
     next: { revalidate: 1800 },
     headers: commonHeaders,
+    cache: "no-store",
   });
 
   if (!res.ok) {
