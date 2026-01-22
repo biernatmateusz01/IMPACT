@@ -5,6 +5,11 @@ const BASE_URL = "https://fakestoreapi.com";
 export async function getAllCategories(): Promise<string[]> {
   const res = await fetch(`${BASE_URL}/products/categories`, {
     next: { revalidate: 3600 },
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; Next.js/16 FakeStoreClient/1.0)",
+      Accept: "application/json",
+      Referer: "https://fakestoreapi.com/",
+    },
   });
 
   if (!res.ok) {
