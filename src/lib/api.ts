@@ -18,6 +18,7 @@ export async function getAllCategories(): Promise<string[]> {
     const res = await fetch(`${BASE_URL}/products/categories`, {
       headers: commonHeaders,
       next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -44,6 +45,7 @@ export async function getProductsByCategory(
     const res = await fetch(url, {
       headers: commonHeaders,
       next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -65,6 +67,7 @@ export async function getAllProducts(): Promise<Product[]> {
     const res = await fetch(`${BASE_URL}/products`, {
       headers: commonHeaders,
       next: { revalidate: 1800 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
