@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllCategories } from "@/lib/api";
 import styles from "./CategoryList.module.css";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const categories = await getAllCategories();
