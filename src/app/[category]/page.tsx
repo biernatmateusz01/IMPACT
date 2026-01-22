@@ -39,13 +39,12 @@ export default async function CategoryPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  try {
-    const categories = await getAllCategories();
-    return categories.map((cat) => ({ category: cat }));
-  } catch (err) {
-    console.error(err);
-    return [{ category: "electronics" }];
-  }
+  return [
+    { category: "electronics" },
+    { category: "jewelery" },
+    { category: "men's clothing" },
+    { category: "women's clothing" },
+  ];
 }
 
 export const revalidate = 3600;
