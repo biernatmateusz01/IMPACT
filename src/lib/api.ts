@@ -3,11 +3,6 @@ import { Product } from "@/lib/types";
 const BASE_URL = "https://fakestoreapi.com";
 
 const commonHeaders = {
-  "User-Agent":
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-  Accept: "application/json, text/plain, */*",
-  "Accept-Language": "en-US,en;q=0.9,pl;q=0.8",
-  "Accept-Encoding": "gzip, deflate, br",
   Referer: "https://fakestoreapi.com/",
   Connection: "keep-alive",
   Origin: "https://fakestoreapi.com",
