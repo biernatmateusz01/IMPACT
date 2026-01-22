@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { getAllCategories } from "@/lib/api";
 import styles from "./CategoryList.module.css";
-
-export const dynamic = "force-dynamic";
-
+ś;
 export default async function Home() {
   const categories = await getAllCategories();
 
