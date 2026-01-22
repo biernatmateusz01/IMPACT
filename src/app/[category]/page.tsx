@@ -7,13 +7,9 @@ interface Props {
   params: Promise<{ category: string }>;
 }
 
-export async function generateStaticParams() {
-  const categories = await getAllCategories();
-  return categories.map((category) => ({ category }));
-}
-
 export default async function CategoryPage({ params }: Props) {
-  const { category } = await params;
+  const resolvedParams = await params;
+  const { category } = resolvedParams;
 
   const decodedCategory = decodeURIComponent(category);
 
@@ -26,10 +22,10 @@ export default async function CategoryPage({ params }: Props) {
           {decodedCategory.charAt(0).toUpperCase() + decodedCategory.slice(1)}
         </h1>
 
-        <p className={styles.count}>{products.length} products</p>
+        <p className={styles.count}>{products.length} produktów</p>
 
         <Link href="/" className={styles.back}>
-          ← Back to categories
+          ← Powrót do kategorii
         </Link>
       </div>
 
@@ -42,4 +38,18 @@ export default async function CategoryPage({ params }: Props) {
   );
 }
 
-export const dynamic = "force-dynamic";
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const categories = await getAllCategories();
+    return categories.map((cat) => ({
+      category: cat,
+    }));
+  } catch (err) {
+    console.error("generateStaticParams → błąd:", err);
+    return [{ category: "electronics" }];
+  }
+}
+
+export const revalidate = 3600;
