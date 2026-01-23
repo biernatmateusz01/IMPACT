@@ -10,7 +10,7 @@ export async function getAllCategories(): Promise<string[]> {
 
     if (!res.ok) {
       console.warn(
-        `Categories fetch failed: ${res.status} ${res.statusText} – returning empty array`,
+        `Categories fetch failed: ${res.status} ${res.statusText} – returning empty array on ${BASE_URL}/products/categories`,
       );
       return [];
     }
