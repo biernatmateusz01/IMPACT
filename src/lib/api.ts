@@ -1,7 +1,6 @@
 import { Product } from "@/lib/types";
 
-const BASE_URL = process.env.API_BASE_URL;
-
+const BASE_URL = "https://fakestoreapi.com";
 export async function getAllCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${BASE_URL}/products/categories`, {
