@@ -2,27 +2,18 @@ import { Product } from "@/lib/types";
 
 const BASE_URL = process.env.API_BASE_URL;
 
-const commonHeaders = {
-  Referer: "https://fakestoreapi.com/",
-  Connection: "keep-alive",
-  Origin: "https://fakestoreapi.com",
-};
-
 export async function getAllCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${BASE_URL}/products/categories`, {
-      headers: commonHeaders,
-      next: { revalidate: 3600 },
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
       console.warn(
-        `Categories fetch failed: ${res.status} ${res.statusText} – returning empty array`,
+        `Categories fetch failed: ${res.status} ${res.statusText} – returning empty array on ${BASE_URL}/products/categories`,
       );
       return [];
     }
-
     return res.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -39,9 +30,7 @@ export async function getProductsByCategory(
 
   try {
     const res = await fetch(url, {
-      headers: commonHeaders,
-      next: { revalidate: 3600 },
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -61,9 +50,7 @@ export async function getProductsByCategory(
 export async function getAllProducts(): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}/products`, {
-      headers: commonHeaders,
-      next: { revalidate: 1800 },
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
