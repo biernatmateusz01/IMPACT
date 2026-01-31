@@ -1,6 +1,6 @@
 import { Product } from "@/lib/types";
 
-const BASE_URL = "https://fakestoreapi.com";
+const BASE_URL = process.env.API_BASE_URL;
 
 const commonHeaders = {
   Referer: "https://fakestoreapi.com/",
@@ -26,6 +26,7 @@ export async function getAllCategories(): Promise<string[]> {
     return res.json();
   } catch (error) {
     console.error("Error fetching categories:", error);
+    throw new Error("Error fetching categories:");
     return [];
   }
 }
