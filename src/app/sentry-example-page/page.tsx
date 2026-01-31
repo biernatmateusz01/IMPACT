@@ -1,6 +1,6 @@
 "use client";
 
-export default function Page() {
+export default function TestPage() {
   function testFunct() {
     throw new Error("Coś się wysypało na kliku");
   }
