@@ -36,3 +36,14 @@ export default async function CategoryPage({ params }: Props) {
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  return [
+    { category: "electronics" },
+    { category: "jewelery" },
+    { category: "men's clothing" },
+    { category: "women's clothing" },
+  ];
+}
+
+export const revalidate = 3600;
